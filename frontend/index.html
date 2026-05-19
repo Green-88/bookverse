@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="BookVerse - premium book recommendations, search, wishlist, and discovery." />
+    <title>BookVerse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20260518-2" />
+    <script defer src="/assets/js/api.js?v=20260518-2"></script>
+    <script defer src="/assets/js/app.js?v=20260518-2"></script>
+  </head>
+  <body>
+    <div class="bg-orb bg-orb-a"></div>
+    <div class="bg-orb bg-orb-b"></div>
+
+    <header class="topbar glass">
+      <a class="brand" href="#/home">
+        <span class="brand-mark">BV</span>
+        <span>
+          <strong>BookVerse</strong>
+          <small>Read. Save. Discover.</small>
+        </span>
+      </a>
+
+      <div class="search-shell">
+        <input id="globalSearch" type="search" placeholder="Search title, author, genre, keywords" autocomplete="off" />
+        <button id="searchButton" class="icon-btn">Search</button>
+        <div id="searchSuggestions" class="suggestions-panel"></div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#/home">Home</a>
+        <a href="#/explore">Explore</a>
+        <a href="#/wishlist">Wishlist</a>
+        <a href="#/profile">Profile</a>
+        <a id="adminNavLink" href="#/admin" class="hidden">Admin</a>
+        <button id="logoutButton" class="ghost-btn hidden">Logout</button>
+      </nav>
+    </header>
+
+    <div class="layout-shell">
+      <aside id="filtersPanel" class="sidebar glass"></aside>
+      <main class="content-shell">
+        <section id="pageContent"></section>
+      </main>
+    </div>
+
+    <div id="modalRoot"></div>
+    <div id="toastRoot" class="toast-root"></div>
+    <div id="loadingBar" class="loading-bar hidden"></div>
+  </body>
+  </html>
