@@ -1,4 +1,5 @@
 (function () {
+  const API_BASE_URL = 'https://bookverse-backend-bhel.onrender.com';
   const TOKEN_KEY = 'bookverse_token';
   const USER_KEY = 'bookverse_user';
 
@@ -35,6 +36,18 @@
     return { token, user: rawUser ? JSON.parse(rawUser) : null };
   };
 
+  const resolveUrl = (url) => {
+    if (/^https?:\/\//i.test(url)) {
+      return url;
+    }
+
+    if (url.startsWith('/')) {
+      return `${API_BASE_URL}${url}`;
+    }
+
+    return `${API_BASE_URL}/${url}`;
+  };
+
   const request = async (url, options = {}) => {
     const session = getStoredSession();
     const headers = { ...(options.headers || {}) };
@@ -47,7 +60,7 @@
       headers.Authorization = `Bearer ${session.token}`;
     }
 
-    const response = await fetch(url, {
+    const response = await fetch(resolveUrl(url), {
       ...options,
       headers,
       body: options.body instanceof FormData ? options.body : options.body ? JSON.stringify(options.body) : undefined
@@ -72,6 +85,7 @@
     getUser,
     setSession,
     clearSession,
-    getStoredSession
+    getStoredSession,
+    API_BASE_URL
   };
 })();
