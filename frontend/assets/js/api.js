@@ -1,5 +1,5 @@
 (function () {
-  const API_BASE_URL = 'https://bookverse-backend-bhel.onrender.com';
+  const API_BASE_URL = 'https://bookverse-backend-bhel.onrender.com/api';
   const TOKEN_KEY = 'bookverse_token';
   const USER_KEY = 'bookverse_user';
 
@@ -42,10 +42,12 @@
     }
 
     if (url.startsWith('/')) {
-      return `${API_BASE_URL}${url}`;
+      const normalizedPath = url.startsWith('/api/') ? url.slice(4) : url;
+      return `${API_BASE_URL}${normalizedPath}`;
     }
 
-    return `${API_BASE_URL}/${url}`;
+    const normalizedPath = url.startsWith('api/') ? url.slice(3) : url;
+    return `${API_BASE_URL}/${normalizedPath}`;
   };
 
   const request = async (url, options = {}) => {
